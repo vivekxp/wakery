@@ -5,6 +5,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-connect');
+	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-karma');
 
 	grunt.initConfig({
@@ -36,13 +37,13 @@ module.exports = function (grunt) {
 				src: ['index.html'],
 				dest: 'dist/',
 			},
-			 templates: {
-                expand: true,
-                flatten: true,
-                cwd: 'src/app/',
-                src: '**/*.tpl.html',
-                dest: 'dist/templates',
-            },
+			templates: {
+				expand: true,
+				flatten: true,
+				cwd: 'src/app/',
+				src: '**/*.tpl.html',
+				dest: 'dist/templates',
+			},
 		},
 		clean: ['dist/'],
 		connect: {
@@ -53,27 +54,34 @@ module.exports = function (grunt) {
 				}
 			}
 		},
+		jshint: {
+			all: ['Gruntfile.js', 'src/**/*.js']
+		},
 		watch: {
 			scripts: {
-				files: ['src/**/*.html','src/**/*.js'],
-				tasks: ['clean','karma:unit','concat:lib','concat:app','concat:css','copy:templates','copy:index'],
+				files: ['src/**/*.html', 'src/**/*.js'],
+				tasks: ['clean','jshint', 'karma:unit', 'concat:lib', 'concat:app', 'concat:css', 'copy:templates', 'copy:index'],
 			}
 		},
 		karma: {
-            unit: {
-                options: {
-                    frameworks: ['jasmine'],
-                    singleRun: true,
-                    browsers: ['PhantomJS'],
-                    files: [
-                        'node_modules/angular/angular.js',
+			unit: {
+				options: {
+					frameworks: ['jasmine'],
+					singleRun: true,
+					browsers: ['PhantomJS'],
+					files: [
+						'node_modules/angular/angular.js',
+						'node_modules/angular-route/angular-route.js',
 						'node_modules/angular-mocks/angular-mocks.js',
-                        'src/**/*.spec.js'
-                    ]
-                }
-            }
-        },
+						'src/**/*.js'
+					]
+				},
+				dev: {
+					reporters: 'dots'
+				}
+			}
+		},
 	});
 
-	grunt.registerTask('default', ['clean','karma:unit','concat:lib','concat:app','concat:css','copy:templates','copy:index','connect:server', 'watch']);
+	grunt.registerTask('default', ['clean','jshint','karma:unit', 'concat:lib', 'concat:app', 'concat:css', 'copy:templates', 'copy:index', 'connect:server', 'watch']);
 };
