@@ -1,0 +1,28 @@
+{
+  "name": "Wakery",
+  "version": "1.0.0",
+  "description": "Waracle Cakery",
+  "main": "index.html",
+  "scripts": {
+    "test": "grunt karma"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vivekxp/wakery.git"
+  },
+  "keywords": [
+    "waracle",
+    "cakery",
+    "html5",
+    "angular",
+    "application",
+    "mobile",
+    "first"
+  ],
+  "author": "Vivek Pandey",
+  "license": "UNLICENCED",
+  "bugs": {
+    "url": "https://github.com/vivekxp/wakery/issues"
+  },
+  "homepage": "https://github.com/vivekxp/wakery#readme"
+}
