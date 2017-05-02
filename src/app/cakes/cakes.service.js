@@ -1,4 +1,4 @@
-angular.module("cakes.service", [])
+angular.module("wakery.cakes.service", [])
     .service("CakesService", function ($http) {
         var SERVER_URI = "http://52.31.91.48:5000/api/cakes";
         var serviceMethods = {

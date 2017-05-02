@@ -1,5 +1,5 @@
 angular.module("WakeryApp", ['ngMaterial', 'ngRoute',
-    'cakes'
+    'wakery.cakes'
 ])
     .config(function ($mdThemingProvider, $routeProvider) {
         $mdThemingProvider.theme('default')

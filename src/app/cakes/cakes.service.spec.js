@@ -3,7 +3,7 @@ describe("cake.service.spec.js", function () {
     var COLLECTION_URL = "http://52.31.91.48:5000/api/cakes";
 
     var CakesService,$httpBackend, $q;
-  beforeEach(module('cakes.service'));
+  beforeEach(module('wakery.cakes.service'));
 
     beforeEach(inject(function (_CakesService_, _$httpBackend_, _$q_) {
         CakesService = _CakesService_;
