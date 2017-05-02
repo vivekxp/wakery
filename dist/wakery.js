@@ -29,8 +29,8 @@ angular.module("WakeryApp", ['ngMaterial', 'ngRoute',
             },
         };
         return serviceMethods;
-    });;angular.module("wakery.cakes.list", ['wakery.cakes.service'])
-    .directive('cakesList', function (CakesService) {
+    });;angular.module("wakery.cakes.list", ['wakery.cakes.service','wakery.cakes.view'])
+    .directive('cakesList', function (CakesService, CakeViewFactory) {
         return {
             templateUrl: 'templates/cakes.list.tpl.html',
             link: function ($scope, element, attrs) {
@@ -39,6 +39,33 @@ angular.module("WakeryApp", ['ngMaterial', 'ngRoute',
                 }, function () {
                     $scope.cakes = [];
                 });
+
+                $scope.show = function(event,cake) {
+                    CakeViewFactory.show(event,cake);
+                };
             }
         };
+    });;angular.module("wakery.cakes.view", ['ngMaterial'])
+    .factory("CakeViewFactory", function ($mdDialog) {
+        var factoryMethods = {};
+        factoryMethods.show = function (event, cake) {
+            $mdDialog.show({
+                parent: angular.element(document.body),
+                targetEvent: event,
+                templateUrl: 'templates/cakes.view.tpl.html',
+                locals: { cake: cake },
+                clickOutsideToClose: true,
+                escapeToClose: true,
+                fullscreen: true,
+                controller: DialogController
+            });
+        };
+        return factoryMethods;
     });
+
+function DialogController($scope, $mdDialog, cake) {
+    $scope.cake = cake;
+    $scope.closeDialog = function () {
+        $mdDialog.hide();
+    };
+}

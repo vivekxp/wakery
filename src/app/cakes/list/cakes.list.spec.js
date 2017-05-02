@@ -1,19 +1,22 @@
 describe("cakes list specs", function () {
     var compile, scope, compiledElement, deferred;
-    var CakesService;
+    var CakesService, CakeViewFactory;
 
     beforeEach(function () {
         module('wakery.cakes.list');
 
-        inject(function ($compile, $rootScope, $templateCache, _CakesService_, _$q_) {
+        inject(function ($compile, $rootScope, $templateCache,
+            _CakesService_, _$q_, _CakeViewFactory_) {
             compile = $compile;
             scope = $rootScope.$new();
             CakesService = _CakesService_;
+            CakeViewFactory = _CakeViewFactory_;
             deferred = _$q_.defer();
             $templateCache.put('templates/cakes.list.tpl.html', '<div>mock template</div>');
         });
 
         spyOn(CakesService, 'list').and.returnValue(deferred.promise);
+        spyOn(CakeViewFactory, 'show');
 
         var element = angular.element('<cakes-list></cakes-list>');
         compiledElement = compile(element)(scope);
@@ -44,6 +47,16 @@ describe("cakes list specs", function () {
             });
             it("should reset cakes array to empty", function () {
                 expect(scope.cakes).toEqual([]);
+            });
+        });
+
+        describe("When show method is called on scope", function () {
+            var mockEvent = "mock_event", mockCake = "mock_cake";
+            beforeEach(function () {
+                scope.show(mockEvent, mockCake);
+            });
+            it("should call show on CakeViewFactory", function () {
+                expect(CakeViewFactory.show).toHaveBeenCalledWith(mockEvent, mockCake);
             });
         });
     });

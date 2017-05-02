@@ -9,7 +9,7 @@
             <span md-truncate>{{cake.name | limitTo:30}}</span>
         </md-card-content>
         <md-card-actions layout="row" layout-align="end center">
-            <md-button>View</md-button>
+            <md-button ng-click="show($event,cake)">View</md-button>
         </md-card-actions>
     </md-card>
 </md-content>
