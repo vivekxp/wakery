@@ -14,11 +14,11 @@
 
 ## About Wakery
 
-Wakery is a SPA written with scability in mind. Although the App currently only support basic CURD features. The APP can be easily extended to add more features. 
+Wakery is a SPA written with scalability in mind. Although the App currently only support basic CURD features. The APP can be easily extended to add more features. 
 
 ### App libraries
 Wakery is written in AngularJS. 
-To minimize the styling work, Angular Material is used.
+To minimise the styling work, Angular Material is used.
 ngRoute is used for routing within the application
 
 ### Build libraries
