@@ -1,0 +1,34 @@
+<md-content layout-gt-sm="column" layout-padding>
+    <div>
+        <form ng-submit="addCake()" name="newCake">
+            <md-input-container>
+                <label>Name</label>
+                <input name="cakeName" required ng-model="cake.name">
+                <div ng-messages="colorForm.favoriteColor.$error">
+                    <div ng-message="required">Name your cake, please.</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label>Image URL</label>
+                <input ng-model="cake.imageUrl">
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label>Comment</label>
+                <textarea ng-model="cake.comment" md-maxlength="300" rows="5" md-select-on-focus></textarea>
+            </md-input-container>
+
+            <md-input-container>
+                <md-slider class="md-padding" md-discrete ng-model="cake.yumFactor" step="1" min="1" max="5" aria-label="Yumfactor">
+                </md-slider>
+                <label class="md-padding">Yum factor</label>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <md-button type="submit" class="md-raised md-primary">Add</md-button>
+                <md-button class="md-raised" ng-click="cancel()">Cancel</md-button>
+            </md-input-container>
+        </form>
+    </div>
+</md-content>

@@ -14,9 +14,28 @@ angular.module("WakeryApp", ['ngMaterial', 'ngRoute',
         $routeProvider.otherwise("/");
     })
 
-    .controller("WakeryController", function ($scope) { });;angular.module("wakery.cakes", ['wakery.cakes.list'])
-    .controller("CakesController", function () {
-
+    .controller("WakeryController", function ($scope) { });;angular.module("wakery.cakes.add", ['wakery.cakes.service'])
+    .controller("CakesAddController", function ($scope, $location, CakesService) {
+        $scope.cake = {};
+        $scope.addCake = function () {
+            console.log("adding cake now");
+            CakesService.create($scope.cake).then(function () {
+                $location.path('/');
+            }, function () {
+                console.log("Could not add caake :(");
+            });
+        };
+        $scope.cancel = function () {
+            $location.path('/');
+        };
+    });;angular.module("wakery.cakes", ['wakery.cakes.list','wakery.cakes.add'])
+    .controller("CakesController", function () { })
+    .config(function ($routeProvider) {
+        $routeProvider
+            .when('/add', {
+                templateUrl: 'templates/cakes.add.tpl.html',
+                controller: 'CakesAddController'
+            });
     });;angular.module("wakery.cakes.service", [])
     .service("CakesService", function ($http) {
         var SERVER_URI = "http://52.31.91.48:5000/api/cakes";
