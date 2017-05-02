@@ -36,6 +36,13 @@ module.exports = function (grunt) {
 				src: ['index.html'],
 				dest: 'dist/',
 			},
+			 templates: {
+                expand: true,
+                flatten: true,
+                cwd: 'src/app/',
+                src: '**/*.tpl.html',
+                dest: 'dist/templates',
+            },
 		},
 		clean: ['dist/'],
 		connect: {
@@ -48,8 +55,8 @@ module.exports = function (grunt) {
 		},
 		watch: {
 			scripts: {
-				files: ['src/**/*.html'],
-				tasks: ['connect:server'],
+				files: ['src/**/*.html','src/**/*.js'],
+				tasks: ['clean','karma:unit','concat:lib','concat:app','concat:css','copy:templates','copy:index'],
 			}
 		},
 		karma: {
@@ -68,5 +75,5 @@ module.exports = function (grunt) {
         },
 	});
 
-	grunt.registerTask('default', ['clean','karma:unit','concat:lib','concat:app','concat:css','copy:index','connect:server', 'watch']);
+	grunt.registerTask('default', ['clean','karma:unit','concat:lib','concat:app','concat:css','copy:templates','copy:index','connect:server', 'watch']);
 };
