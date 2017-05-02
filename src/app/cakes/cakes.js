@@ -1,4 +1,4 @@
-angular.module("wakery.cakes", ['wakery.cakes.list','wakery.cakes.add'])
+angular.module("wakery.cakes", ['wakery.cakes.list', 'wakery.cakes.add'])
     .controller("CakesController", function () { })
     .config(function ($routeProvider) {
         $routeProvider

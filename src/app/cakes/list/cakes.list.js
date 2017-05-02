@@ -1,4 +1,4 @@
-angular.module("wakery.cakes.list", ['wakery.cakes.service','wakery.cakes.view'])
+angular.module("wakery.cakes.list", ['wakery.cakes.service', 'wakery.cakes.view'])
     .directive('cakesList', function (CakesService, CakeViewFactory) {
         return {
             templateUrl: 'templates/cakes.list.tpl.html',
@@ -9,8 +9,8 @@ angular.module("wakery.cakes.list", ['wakery.cakes.service','wakery.cakes.view']
                     $scope.cakes = [];
                 });
 
-                $scope.show = function(event,cake) {
-                    CakeViewFactory.show(event,cake);
+                $scope.show = function (event, cake) {
+                    CakeViewFactory.show(event, cake);
                 };
             }
         };

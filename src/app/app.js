@@ -1,4 +1,4 @@
-angular.module("WakeryApp", ['ngMaterial', 'ngRoute',
+angular.module("wakery", ['ngMaterial', 'ngRoute',
     'wakery.cakes'
 ])
     .config(function ($mdThemingProvider, $routeProvider) {

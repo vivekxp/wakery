@@ -11,7 +11,7 @@ describe("cake view specs", function () {
     describe("When show method is called", function () {
         var response;
         beforeEach(function () {
-            response = CakeViewFactory.show("event","cake");
+            response = CakeViewFactory.show("event", "cake");
         });
 
         it("should call show on mdDialog", function () {
